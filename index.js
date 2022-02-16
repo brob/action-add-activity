@@ -12,8 +12,10 @@ try {
     const orbitActivities = new OrbitActivities(workspace, apiKey)
     const data = {
         activity_type: `discussion:${github.context.payload.action}`,
-        title: github.context.payload.discussion.title,
-        description: github.context.payload.discussion.body,
+        title: `Discussion ${github.context.payload.action}`,
+        description: `
+        # ${github.context.payload.discussion.title}
+        ${github.context.payload.discussion.body}`,
         member: {
             github: github.context.payload.discussion.user.login,
         }
