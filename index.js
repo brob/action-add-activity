@@ -9,19 +9,37 @@ try {
     const workspace = core.getInput('workspace');
     const apiKey = core.getInput('api_key');
     const orbitActivities = new OrbitActivities(workspace, apiKey)
-    const data = {
-        activity_type: `discussion:${github.context.payload.action}`,
-        link: github.context.payload.discussion.html_url,
-        link_text: 'View the discussion',
-        title: `Discussion ${github.context.payload.action}`,
-        occured_at: github.context.payload.discussion.created_at,
-        description: `
+    let data;
+    if (github.context.payload.comment) {
+        data = {
+            activity_type: `discussion:comment`,
+            link: github.context.payload.comment.html_url,
+            link_text: 'View the discussion',
+            title: `Discussion comment`,
+            occured_at: github.context.payload.comment.created_at,
+            description: `
+${github.context.payload.comment.body}`,
+            member: {
+                github: github.context.payload.comment.user.login,
+            }
+        }
+    } else {
+        data = {
+            activity_type: `discussion:${github.context.payload.action}`,
+            link: github.context.payload.discussion.html_url,
+            link_text: 'View the discussion',
+            title: `Discussion ${github.context.payload.action}`,
+            occured_at: github.context.payload.discussion.created_at,
+            description: `
 # ${github.context.payload.discussion.title}
 ${github.context.payload.discussion.body}`,
-        member: {
-            github: github.context.payload.discussion.user.login,
+            member: {
+                github: github.context.payload.discussion.user.login,
+            }
         }
     }
+    
+    
 
     orbitActivities.createActivity(data).then(data => {
         core.setOutput("activity", data)

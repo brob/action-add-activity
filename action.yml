@@ -1,4 +1,4 @@
-name: 'Add Activity'
+name: 'Add Discussion Activity'
 description: 'Add activity to Orbit workspace'
 inputs:
   workspace:  # id of input
