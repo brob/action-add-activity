@@ -12,10 +12,13 @@ try {
     const orbitActivities = new OrbitActivities(workspace, apiKey)
     const data = {
         activity_type: `discussion:${github.context.payload.action}`,
+        link: github.context.payload.discussion.html_url,
+        link_text: 'View the discussion',
         title: `Discussion ${github.context.payload.action}`,
+        occured_at: github.context.payload.discussion.created_at,
         description: `
-        # ${github.context.payload.discussion.title}
-        ${github.context.payload.discussion.body}`,
+# ${github.context.payload.discussion.title}
+${github.context.payload.discussion.body}`,
         member: {
             github: github.context.payload.discussion.user.login,
         }
