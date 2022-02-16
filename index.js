@@ -21,8 +21,7 @@ try {
         occured_at: occured_at,
         description: description.join('\n'),
         member: {
-            source: 'github',
-            username: username,
+            github: username,
         }
     }
     console.log(activity);
