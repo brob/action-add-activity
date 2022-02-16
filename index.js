@@ -14,9 +14,8 @@ try {
         activity_type: `discussion:${github.context.payload.action}`,
         title: github.context.payload.discussion.title,
         description: github.context.payload.discussion.body,
-        identity: {
-            type: 'github',
-            id: github.context.payload.discussion.user.login,
+        member: {
+            github: github.context.payload.discussion.user.login,
         }
     }
     console.log(data)
