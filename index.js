@@ -42,7 +42,7 @@ ${github.context.payload.discussion.body}`,
     
 
     orbitActivities.createActivity(data).then(data => {
-        core.setOutput("activity", data)
+        core.setOutput("activity", JSON.stringify(data, null, 2))
     }).catch(error => {
         console.error(error)
         core.setFailed(error)
