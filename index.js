@@ -6,7 +6,6 @@ const OrbitActivities = require('@orbit-love/activities')
 
 
 try {
-    
     const workspace = core.getInput('workspace');
     const apiKey = core.getInput('api_key');
     const orbitActivities = new OrbitActivities(workspace, apiKey)
@@ -23,16 +22,16 @@ ${github.context.payload.discussion.body}`,
             github: github.context.payload.discussion.user.login,
         }
     }
-    console.log(data)
+
     orbitActivities.createActivity(data).then(data => {
-        console.log('success', data)
+        core.setOutput("activity", data)
     }).catch(error => {
         console.error(error)
+        core.setFailed(error)
     })
     
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
     core.setOutput("payload", payload);
 
   } catch (error) {
