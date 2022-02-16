@@ -1,0 +1,13 @@
+name: 'Add Activity'
+description: 'Add activity to Orbit workspace'
+# inputs:
+#   who-to-greet:  # id of input
+#     description: 'Who to greet'
+#     required: true
+#     default: 'World'
+outputs:
+  payload: # id of output
+    description: 'The whole payload'
+runs:
+  using: 'node16'
+  main: 'index.js'
