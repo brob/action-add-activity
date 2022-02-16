@@ -16,7 +16,7 @@ try {
         description: github.context.payload.discussion.body,
         identity: {
             type: 'github',
-            id: github.context.payload.discussion.author.login,
+            id: github.context.payload.discussion.user.login,
         }
     }
     console.log(data)
