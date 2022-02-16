@@ -14,12 +14,16 @@ try {
     const title = core.getInput('title')
     const occured_at = core.getInput('occured_at')
     const description = core.getMultilineInput('description')
+    const link = core.getInput('link')
+    const link_text = core.getInput('link_text')
 
     const activity = {
-        activity_type: activity_type,
-        title: title,
-        occured_at: occured_at,
+        activity_type,
+        title,
+        occured_at,
         description: description.join('\n'),
+        link,
+        link_text,
         member: {
             github: username,
         }
