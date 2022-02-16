@@ -7,6 +7,21 @@ inputs:
   api_key:
     description: 'API key for Orbit'
     required: true
+  activity_type:
+    description: 'Type of activity to add'
+    required: true
+  username:
+    description: 'Username of user to add activity to'
+    required: true
+  title:
+    description: 'Title of activity'
+    required: true
+  description:
+    description: 'Description of activity'
+    required: true
+  occurred_at:
+    description: 'Date and time of activity'
+    required: true
 outputs:
   activity: # id of output
     description: 'Activity response'

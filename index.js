@@ -9,6 +9,27 @@ try {
     const workspace = core.getInput('workspace');
     const apiKey = core.getInput('api_key');
     const orbitActivities = new OrbitActivities(workspace, apiKey)
+    const activity_type = core.getInput('activity_type')
+    const username = core.getInput('username')
+    const title = core.getInput('title')
+    const occured_at = core.getInput('occured_at')
+    const description = core.getInput('description')
+
+    const activity = {
+        activity_type: activity_type,
+        username: username,
+        title: title,
+        occured_at: occured_at,
+        description: description,
+        member: {
+            source: 'github',
+            username: github.context.actor,
+        }
+    }
+    console.log(activity);
+    
+    
+    
     let data;
     if (github.context.payload.comment) {
         data = {
