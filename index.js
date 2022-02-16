@@ -19,7 +19,7 @@ try {
         activity_type: activity_type,
         title: title,
         occured_at: occured_at,
-        description: description,
+        description: description.join('\n'),
         member: {
             source: 'github',
             username: username,
